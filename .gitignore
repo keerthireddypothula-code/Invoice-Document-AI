@@ -1,0 +1,64 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual envs
+.env
+.venv
+env/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Project outputs / heavy artifacts
+outputs/
+logs/
+models/*.pt
+models/*.onnx
+data/synthetic/
+data/raw/
+data/*.pdf
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.env.local
+.env.*
+!.env.example
