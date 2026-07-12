@@ -1,0 +1,57 @@
+# Invoice Document AI — Default Configuration
+
+paths:
+  asset_master: "configs/asset_master.csv"
+  yolo_weights: "models/sig_stamp_yolov8n.pt"
+  output_dir: "outputs/"
+
+ingest:
+  dpi: 300
+  deskew: true
+  denoise: true
+
+ocr:
+  engine: "tesseract"          # "paddleocr" (prod) or "tesseract" (lightweight fallback)
+  languages: ["en", "hi"]      # PaddleOCR: english + hindi (extendable)
+  tesseract_lang: "eng"
+  use_angle_cls: true
+  det_db_thresh: 0.3
+  min_confidence: 0.3
+
+extraction:
+  dealer:
+    anchors: ["dealer", "m/s", "messrs", "dealer name", "डीलर", "ડીલર"]
+    fuzzy_threshold: 90       # CV claim: ≥90% fuzzy match
+  model:
+    anchors: ["model", "model no", "tractor model", "मॉडल"]
+    known_series: ["DI", "NXT", "XP", "4WD"]
+  horse_power:
+    anchors: ["hp", "horsepower", "horse power", "h.p.", "bhp"]
+    regex: "(\\d{1,3})\\s*(?:hp|h\\.p\\.|bhp|horsepower)"
+    min_hp: 10
+    max_hp: 150
+  cost:
+    anchors: ["total", "grand total", "asset cost", "amount", "price",
+              "on road", "ex-showroom", "कुल", "કુલ"]
+    min_cost: 50000
+    max_cost: 5000000
+
+detection:
+  yolo_conf_threshold: 0.35
+  iou_threshold: 0.5          # CV claim: IoU > 0.5
+  classes: ["signature", "stamp"]
+  heuristic_fallback: true
+
+evaluation:
+  dla_target: 0.95            # 95% document-level accuracy target
+  fuzzy_match_threshold: 90
+  cost_tolerance_pct: 5       # ±5% for numeric fields
+  iou_threshold: 0.5
+
+runtime:
+  max_latency_sec: 30
+  target_cost_usd: 0.01
+
+logging:
+  level: "INFO"
+  file: "logs/pipeline.log"
