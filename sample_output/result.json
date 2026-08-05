@@ -1,0 +1,30 @@
+{
+  "doc_id": "invoice_0005",
+  "fields": {
+    "dealer_name": "Kanak Tractors",
+    "model_name": "John Deere 5075E",
+    "horse_power": 75,
+    "asset_cost": 973000,
+    "signature": {
+      "present": true,
+      "bbox": [
+        114,
+        1346,
+        415,
+        1444
+      ]
+    },
+    "stamp": {
+      "present": true,
+      "bbox": [
+        819,
+        1299,
+        982,
+        1462
+      ]
+    }
+  },
+  "confidence": 0.518,
+  "processing_time_sec": 2.087,
+  "cost_estimate_usd": 6.3e-05
+}
